@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Countdown</title>
+<style>
+body {
+  background: #0B0F1A;
+  color: white;
+  font-family: Arial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+h1 { font-size: 40px; }
+#timer { font-size: 50px; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h1>Permuto Launch</h1>
+<div id="timer"></div>
+
+<script>
+const targetDate = new Date("May 1, 2026 00:00:00").getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((distance / 1000 / 60) % 60);
+  const seconds = Math.floor((distance / 1000) % 60);
+
+  document.getElementById("timer").innerHTML =
+    days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+
+}, 1000);
+</script>
+
+</body>
+</html>
