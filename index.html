@@ -361,6 +361,133 @@
         align-items: start;
       }
     }
+ .chia-section {
+  margin-top: 28px;
+}
+
+.chia-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.035));
+  border: 1px solid rgba(45,212,191,0.14);
+  border-radius: 28px;
+  padding: 26px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+
+.chia-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(45,212,191,0.08), transparent 26%),
+    radial-gradient(circle at 85% 80%, rgba(96,165,250,0.07), transparent 24%);
+  pointer-events: none;
+}
+
+.chia-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.chia-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.chia-title-wrap h2 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.chia-subtitle {
+  margin: 0;
+  color: rgba(255,255,255,0.72);
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 760px;
+}
+
+.chia-badge {
+  white-space: nowrap;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ccfbf1;
+  background: rgba(45,212,191,0.10);
+  border: 1px solid rgba(45,212,191,0.18);
+}
+
+.chia-table-wrap {
+  overflow-x: auto;
+  margin-top: 8px;
+}
+
+.chia-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+.chia-table th,
+.chia-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 18px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.chia-table th {
+  font-size: 13px;
+  color: rgba(255,255,255,0.62);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.chia-table td {
+  font-size: 15px;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.45;
+}
+
+.chia-period {
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.chia-event {
+  font-weight: 700;
+  color: #dbeafe;
+}
+
+.chia-note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.60);
+  line-height: 1.5;
+}
+
+@media (max-width: 860px) {
+  .chia-card {
+    padding: 20px;
+  }
+
+  .chia-title-wrap h2 {
+    font-size: 24px;
+  }
+}
   </style>
 </head>
 <body>
@@ -569,7 +696,73 @@
       </aside>
     </div>
   </div>
+<section class="chia-section">
+  <div class="page">
+    <div class="chia-card">
+      <div class="chia-header">
+        <div class="chia-title-wrap">
+          <h2>Chia Network Roadmap</h2>
+          <p class="chia-subtitle">
+            Separate roadmap view for key Chia Network milestones across 2026–2027,
+            including software upgrades, network transition, and the next halving cycle.
+          </p>
+        </div>
+        <div class="chia-badge">Chia Network</div>
+      </div>
 
+      <div class="chia-table-wrap">
+        <table class="chia-table">
+          <thead>
+            <tr>
+              <th>Period</th>
+              <th>Event</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="chia-period">Spring 2026</td>
+              <td class="chia-event">Chia 3.0 Release</td>
+              <td>
+                Launch of the new software suite, including advanced plotting tools and
+                final technical standards for Proof of Space 2.0.
+              </td>
+            </tr>
+            <tr>
+              <td class="chia-period">H2 2026</td>
+              <td class="chia-event">Pre-Halving Sentiment</td>
+              <td>
+                Market attention may build ahead of the 2027 halving, alongside potential
+                updates related to the S-1/S-6 and IPO trajectory.
+              </td>
+            </tr>
+            <tr>
+              <td class="chia-period">November 2026</td>
+              <td class="chia-event">Hard Fork Activation</td>
+              <td>
+                Block 9,562,000 marks the start of the Plot v2 transition, with farmers
+                beginning gradual replotting into the updated format.
+              </td>
+            </tr>
+            <tr>
+              <td class="chia-period">March 2027</td>
+              <td class="chia-event">The Halving</td>
+              <td>
+                Block rewards for farmers are reduced by 50%, from 1 XCH to 0.5 XCH,
+                marking the next major supply reduction milestone for the network.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="chia-note">
+        This section is a roadmap-style reference and should be treated as an informational
+        timeline rather than a guarantee of execution dates.
+      </div>
+    </div>
+  </div>
+</section>
   <footer class="footer-note">
     © 2026 • Not sponsored by or affiliated with Chia Network Inc or Permuto Capital
   </footer>
