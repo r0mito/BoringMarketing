@@ -488,16 +488,42 @@
     font-size: 24px;
   }
 }
+    .brand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+
+  background: rgba(45,212,191,0.12);
+  border: 1px solid rgba(45,212,191,0.25);
+
+  color: var(--accent);
+  box-shadow: 0 0 12px rgba(45,212,191,0.35);
+}
+
+.brand-icon svg {
+  width: 14px;
+  height: 14px;
+}
   </style>
 </head>
 <body>
   <div class="page">
     <section class="hero">
       <div class="hero-content">
-        <div class="eyebrow">
-          <span class="dot"></span>
-          Permuto Timeline
-        </div>
+  <div class="eyebrow">
+  <span class="brand-icon">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L20 6V12C20 16.5 16.8 20.5 12 22C7.2 20.5 4 16.5 4 12V6L12 2Z"
+            stroke="currentColor" stroke-width="1.5"/>
+      <path d="M9 12L11 14L15 10"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </span>
+  Permuto Timeline
+</div>
         <h1>Countdown to Key SEC and Trust Milestones</h1>
         <p>
           A clean public timeline for the expected formal start, SEC review window,
