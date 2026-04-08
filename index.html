@@ -577,6 +577,178 @@
   text-align: center;
   box-shadow: 0 0 12px rgba(45, 212, 191, 0.2);
 }
+  .supply-section {
+  margin-top: 28px;
+}
+
+.supply-card {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.03));
+  border: 1px solid rgba(96,165,250,0.16);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+}
+
+.supply-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(96,165,250,0.10), transparent 26%),
+    radial-gradient(circle at 85% 75%, rgba(45,212,191,0.08), transparent 24%);
+}
+
+.supply-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.supply-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.supply-eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #bfdbfe;
+  background: rgba(96,165,250,0.10);
+  border: 1px solid rgba(96,165,250,0.18);
+}
+
+.supply-title {
+  margin: 0 0 8px;
+  font-size: 30px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.supply-subtitle {
+  margin: 0;
+  color: rgba(255,255,255,0.72);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.supply-badge {
+  white-space: nowrap;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ccfbf1;
+  background: rgba(45,212,191,0.10);
+  border: 1px solid rgba(45,212,191,0.18);
+}
+
+.supply-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.9fr);
+  gap: 18px;
+}
+
+.supply-main-box,
+.supply-mini-box {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 22px;
+}
+
+.supply-main-box {
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 220px;
+}
+
+.supply-value {
+  font-size: clamp(34px, 6vw, 72px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin-bottom: 14px;
+  word-break: break-word;
+}
+
+.supply-label {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.58);
+}
+
+.supply-side-boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.supply-mini-box {
+  padding: 18px 16px;
+  min-height: 96px;
+}
+
+.supply-mini-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  color: rgba(255,255,255,0.52);
+  margin-bottom: 10px;
+}
+
+.supply-mini-value {
+  font-size: 16px;
+  line-height: 1.35;
+  color: rgba(255,255,255,0.92);
+}
+
+.supply-note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.58);
+  line-height: 1.5;
+}
+
+@media (max-width: 980px) {
+  .supply-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .supply-card {
+    padding: 20px;
+  }
+
+  .supply-title {
+    font-size: 24px;
+  }
+
+  .supply-side-boxes {
+    grid-template-columns: 1fr;
+  }
+
+  .supply-main-box {
+    min-height: 180px;
+    padding: 24px 18px;
+  }
+}
   </style>
 </head>
 <body>
@@ -879,6 +1051,55 @@
     </div>
   </div>
 </section>
+  <section class="supply-section">
+  <div class="page">
+    <div class="supply-card">
+      <div class="supply-header">
+        <div>
+          <div class="supply-eyebrow">Live XCH Metric</div>
+          <h2 class="supply-title">Current XCH Circulating Supply</h2>
+          <p class="supply-subtitle">
+            Live estimate pulled automatically from SpaceScan.
+          </p>
+        </div>
+        <div class="supply-badge">Auto-updating</div>
+      </div>
+
+      <div class="supply-grid">
+        <div class="supply-main-box">
+          <div class="supply-value" id="xchSupplyValue">Loading...</div>
+          <div class="supply-label">XCH in circulation</div>
+        </div>
+
+        <div class="supply-side-boxes">
+          <div class="supply-mini-box">
+            <div class="supply-mini-label">Source</div>
+            <div class="supply-mini-value">SpaceScan API</div>
+          </div>
+
+          <div class="supply-mini-box">
+            <div class="supply-mini-label">Refresh</div>
+            <div class="supply-mini-value">Every 5 min</div>
+          </div>
+
+          <div class="supply-mini-box">
+            <div class="supply-mini-label">Last update</div>
+            <div class="supply-mini-value" id="xchSupplyUpdated">Waiting...</div>
+          </div>
+
+          <div class="supply-mini-box">
+            <div class="supply-mini-label">Status</div>
+            <div class="supply-mini-value" id="xchSupplyStatus">Connecting...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="supply-note">
+        Informational only. API availability and response format may change over time.
+      </div>
+    </div>
+  </div>
+</section>
   <footer class="footer-note">
     © 2026 • Not sponsored by or affiliated with Chia Network Inc or Permuto Capital
     <p class="footer-disclaimer">
@@ -922,6 +1143,149 @@
 
     updateCountdowns();
     setInterval(updateCountdowns, 1000);
+    <script>
+  function formatSupplyNumber(value) {
+    return new Intl.NumberFormat('en-US', {
+      maximumFractionDigits: 0
+    }).format(value);
+  }
+
+  function extractSupplyNumber(payload) {
+    if (typeof payload === 'number' && Number.isFinite(payload)) return payload;
+
+    if (typeof payload === 'string') {
+      const cleaned = payload.replace(/,/g, '').trim();
+      const asNumber = Number(cleaned);
+      if (Number.isFinite(asNumber)) return asNumber;
+    }
+
+    if (payload && typeof payload === 'object') {
+      const possiblePaths = [
+        payload.circulating_supply,
+        payload.circulatingSupply,
+        payload.supply,
+        payload.value,
+        payload.data?.circulating_supply,
+        payload.data?.circulatingSupply,
+        payload.data?.supply,
+        payload.stats?.circulating_supply,
+        payload.stats?.circulatingSupply
+      ];
+
+      for (const item of possiblePaths) {
+        if (typeof item === 'number' && Number.isFinite(item)) return item;
+        if (typeof item === 'string') {
+          const cleaned = item.replace(/,/g, '').trim();
+          const asNumber = Number(cleaned);
+          if (Number.isFinite(asNumber)) return asNumber;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  async function fetchXchSupply() {
+    const valueEl = document.getElementById('xchSupplyValue');
+    const updatedEl = document.getElementById('xchSupplyUpdated');
+    const statusEl = document.getElementById('xchSupplyStatus');
+
+    if (!valueEl || !updatedEl || !statusEl) return;
+
+    statusEl.textContent = 'Updating...';
+
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 10000);
+
+      const response = await fetch('https://api.spacescan.io/stats/circulating-supply', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json, text/plain, */*'
+        },
+        cache: 'no-store',
+        signal: controller.signal
+      });
+
+      clearTimeout(timeout);
+
+      if (!response.ok) {
+        throw new Error('HTTP ' + response.status);
+      }
+
+      const rawText = await response.text();
+
+      let parsed;
+      try {
+        parsed = JSON.parse(rawText);
+      } catch {
+        parsed = rawText;
+      }
+
+      const supply = extractSupplyNumber(parsed);
+
+      if (!Number.isFinite(supply)) {
+        throw new Error('Unexpected API format');
+      }
+
+      valueEl.textContent = formatSupplyNumber(supply);
+      updatedEl.textContent = new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      statusEl.textContent = 'Live';
+    } catch (error) {
+      console.error('Failed to fetch XCH circulating supply:', error);
+      statusEl.textContent = 'Unavailable';
+
+      if (!valueEl.textContent || valueEl.textContent === 'Loading...') {
+        valueEl.textContent = 'N/A';
+      }
+    }
+  }
+
+  function startXchSupplyPolling() {
+    fetchXchSupply();
+    setInterval(fetchXchSupply, 5 * 60 * 1000);
+  }
+
+  function updateCountdowns() {
+    const countdowns = document.querySelectorAll('.countdown');
+
+    countdowns.forEach((countdown) => {
+      const targetDate = new Date(countdown.dataset.date).getTime();
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const daysEl = countdown.querySelector('.days');
+      const hoursEl = countdown.querySelector('.hours');
+      const minutesEl = countdown.querySelector('.minutes');
+      const secondsEl = countdown.querySelector('.seconds');
+
+      if (distance <= 0) {
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minutesEl.textContent = String(minutes).padStart(2, '0');
+      secondsEl.textContent = String(seconds).padStart(2, '0');
+    });
+  }
+
+  updateCountdowns();
+  startXchSupplyPolling();
+  setInterval(updateCountdowns, 1000);
+</script>
   </script>
 </body>
 </html>
