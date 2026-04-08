@@ -1107,43 +1107,7 @@
 </p>
   </footer>
 
-  <script>
-    function updateCountdowns() {
-      const countdowns = document.querySelectorAll('.countdown');
-
-      countdowns.forEach((countdown) => {
-        const targetDate = new Date(countdown.dataset.date).getTime();
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-
-        const daysEl = countdown.querySelector('.days');
-        const hoursEl = countdown.querySelector('.hours');
-        const minutesEl = countdown.querySelector('.minutes');
-        const secondsEl = countdown.querySelector('.seconds');
-
-        if (distance <= 0) {
-          daysEl.textContent = '00';
-          hoursEl.textContent = '00';
-          minutesEl.textContent = '00';
-          secondsEl.textContent = '00';
-          return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((distance / (1000 * 60)) % 60);
-        const seconds = Math.floor((distance / 1000) % 60);
-
-        daysEl.textContent = String(days).padStart(2, '0');
-        hoursEl.textContent = String(hours).padStart(2, '0');
-        minutesEl.textContent = String(minutes).padStart(2, '0');
-        secondsEl.textContent = String(seconds).padStart(2, '0');
-      });
-    }
-
-    updateCountdowns();
-    setInterval(updateCountdowns, 1000);
-    <script>
+ <script>
   function formatSupplyNumber(value) {
     return new Intl.NumberFormat('en-US', {
       maximumFractionDigits: 0
@@ -1161,10 +1125,12 @@
 
     if (payload && typeof payload === 'object') {
       const possiblePaths = [
+        payload["circulating-supply"],
         payload.circulating_supply,
         payload.circulatingSupply,
         payload.supply,
         payload.value,
+        payload.data?.["circulating-supply"],
         payload.data?.circulating_supply,
         payload.data?.circulatingSupply,
         payload.data?.supply,
@@ -1198,7 +1164,7 @@
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 10000);
 
-      const response = await fetch('https://api.spacescan.io/stats/circulating-supply', {
+      const response = await fetch('https://YOUR-WORKER-URL.workers.dev', {
         method: 'GET',
         headers: {
           'Accept': 'application/json, text/plain, */*'
@@ -1237,10 +1203,7 @@
     } catch (error) {
       console.error('Failed to fetch XCH circulating supply:', error);
       statusEl.textContent = 'Unavailable';
-
-      if (!valueEl.textContent || valueEl.textContent === 'Loading...') {
-        valueEl.textContent = 'N/A';
-      }
+      valueEl.textContent = 'N/A';
     }
   }
 
@@ -1286,6 +1249,5 @@
   startXchSupplyPolling();
   setInterval(updateCountdowns, 1000);
 </script>
-  </script>
 </body>
 </html>
