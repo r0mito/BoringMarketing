@@ -993,8 +993,15 @@
 
 .rollout-main-box {
   padding: 22px;
+  min-width: 0;
+}
+  .rollout-main-box .countdown {
+  min-width: 0;
 }
 
+.rollout-main-box .time-box {
+  min-width: 0;
+}
 .rollout-main-label {
   font-size: 12px;
   color: rgba(255,255,255,0.6);
@@ -1231,8 +1238,8 @@
     <div class="rollout-grid">
       <div class="rollout-main-box">
         <div class="rollout-main-label">End of rollout window</div>
-
-        <div class="countdown" data-date="2027-12-31T23:59:59">
+        
+<div class="countdown rollout-countdown" data-date="2027-12-31T23:59:59">
           <div class="time-box">
             <div class="time-value days">00</div>
             <div class="time-label">Days</div>
