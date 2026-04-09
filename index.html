@@ -930,6 +930,96 @@
     padding: 24px 18px;
   }
 }
+  .rollout-section {
+  margin-top: 18px;
+}
+
+.rollout-card {
+  padding: 26px;
+  border-radius: var(--radius);
+  background: var(--panel);
+  border: 1px solid rgba(45,212,191,0.18);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+}
+
+.rollout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.rollout-eyebrow {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ccfbf1;
+  margin-bottom: 8px;
+}
+
+.rollout-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.6;
+  max-width: 720px;
+}
+
+.rollout-badge {
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #ccfbf1;
+  background: rgba(45,212,191,0.10);
+  border: 1px solid rgba(45,212,191,0.18);
+}
+
+.rollout-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+}
+
+.rollout-main-box,
+.rollout-mini-box {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 18px;
+}
+
+.rollout-main-box {
+  padding: 22px;
+}
+
+.rollout-main-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 12px;
+}
+
+.rollout-side-boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.rollout-mini-box {
+  padding: 14px;
+}
+
+.rollout-mini-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 6px;
+}
+
+.rollout-mini-value {
+  font-size: 14px;
+}
   </style>
 </head>
 <body>
@@ -1122,8 +1212,105 @@
             </div>
           </div>
         </section>
-      </main>
+        <section class="rollout-section">
+  <div class="rollout-card">
+    <div class="rollout-header">
+      <div>
+        <div class="rollout-eyebrow">Next Phase: Scaling</div>
+        <h3 class="event-title">Permuto 85 Trusts Rollout (2026–2027)</h3>
+        <p class="rollout-subtitle">
+          Permuto may expand to up to 85 institutional trusts, potentially covering
+          a large portion of the S&amp;P 500 by value. Over ~24 months, this scaling
+          could significantly increase on-chain dividend activity and create sustained
+          demand for Chia blockspace.
+        </p>
+      </div>
+      <div class="rollout-badge">Expansion Phase</div>
+    </div>
 
+    <div class="rollout-grid">
+      <div class="rollout-main-box">
+        <div class="rollout-main-label">End of rollout window</div>
+
+        <div class="countdown" data-date="2027-12-31T23:59:59">
+          <div class="time-box">
+            <div class="time-value days">00</div>
+            <div class="time-label">Days</div>
+          </div>
+          <div class="time-box">
+            <div class="time-value hours">00</div>
+            <div class="time-label">Hours</div>
+          </div>
+          <div class="time-box">
+            <div class="time-value minutes">00</div>
+            <div class="time-label">Minutes</div>
+          </div>
+          <div class="time-box">
+            <div class="time-value seconds">00</div>
+            <div class="time-label">Seconds</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rollout-side-boxes">
+        <div class="rollout-mini-box">
+          <div class="rollout-mini-label">Max scale</div>
+          <div class="rollout-mini-value">Up to 85 trusts</div>
+        </div>
+
+        <div class="rollout-mini-box">
+          <div class="rollout-mini-label">Market coverage</div>
+          <div class="rollout-mini-value">Up to ~90% S&amp;P 500 value</div>
+        </div>
+
+        <div class="rollout-mini-box">
+          <div class="rollout-mini-label">Time horizon</div>
+          <div class="rollout-mini-value">~24 months</div>
+        </div>
+
+        <div class="rollout-mini-box">
+          <div class="rollout-mini-label">Network impact</div>
+          <div class="rollout-mini-value">Potential blockspace saturation</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-list" style="margin-top: 20px;">
+      <div class="timeline-item">
+        <div>
+          <strong>Scaling phase</strong>
+          <span>Transition from initial launch to broad institutional coverage.</span>
+        </div>
+        <div class="timeline-chip">Scale</div>
+      </div>
+
+      <div class="timeline-item">
+        <div>
+          <strong>On-chain dividends</strong>
+          <span>Increasing number of trusts may drive recurring blockchain usage.</span>
+        </div>
+        <div class="timeline-chip">Flow</div>
+      </div>
+
+      <div class="timeline-item">
+        <div>
+          <strong>Chia demand</strong>
+          <span>Higher activity could create structural demand for blockspace.</span>
+        </div>
+        <div class="timeline-chip">Demand</div>
+      </div>
+
+      <div class="timeline-item">
+        <div>
+          <strong>Important</strong>
+          <span>This is a forward-looking scenario, not a confirmed rollout schedule.</span>
+        </div>
+        <div class="timeline-chip">Forward-Looking</div>
+      </div>
+    </div>
+  </div>
+</section>
+      </main>
       <aside class="sidebar">
         <section class="side-card">
           <h3 class="side-title">Timeline Notes</h3>
