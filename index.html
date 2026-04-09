@@ -1102,151 +1102,105 @@
     grid-template-columns: 1fr;
   }
 }
- .halving-countdown-section {
-  margin-top: 24px;
+ /* SECTION */
+.halving-countdown-section {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
 }
 
+/* CARD */
 .halving-countdown-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 24px;
-  padding: 24px;
-  border: 1px solid rgba(120, 160, 255, 0.12);
-  background:
-    radial-gradient(circle at 15% 20%, rgba(0, 255, 170, 0.08), transparent 26%),
-    radial-gradient(circle at 85% 80%, rgba(120, 100, 255, 0.10), transparent 28%),
-    linear-gradient(135deg, rgba(10, 18, 35, 0.96), rgba(16, 20, 42, 0.96));
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.03) inset,
-    0 14px 36px rgba(0,0,0,0.28);
-  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 1000px; /* фикс ширины */
+  margin: 0 auto;
+  padding: 30px;
+
+  border-radius: 20px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  color: #ffffff;
 }
 
+/* HEADER */
 .halving-countdown-header {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .halving-label {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 14px;
+  display: inline-block;
+  font-size: 12px;
+  padding: 6px 12px;
   border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #c9f7e8;
-  border: 1px solid rgba(63, 255, 181, 0.22);
-  background: rgba(29, 62, 62, 0.4);
-  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 10px;
 }
 
-.halving-countdown-card h2 {
-  margin: 0 0 8px;
+.halving-countdown-header h2 {
   font-size: 28px;
-  line-height: 1.08;
-  color: #ffffff;
-}
-
-.halving-countdown-card p {
   margin: 0;
-  max-width: 680px;
+}
+
+.halving-countdown-header p {
   font-size: 14px;
-  line-height: 1.45;
-  color: rgba(255,255,255,0.74);
+  opacity: 0.8;
+  margin-top: 8px;
 }
 
-.halving-countdown-timer {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(110px, 1fr));
-  gap: 14px;
-  margin-top: 20px;
+/* ETA TEXT */
+.halving-subtext {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-top: 10px;
 }
 
-.halving-countdown-timer .countdown-box {
-  border-radius: 18px;
-  padding: 18px 12px;
-  text-align: center;
-  border: 1px solid rgba(255,255,255,0.07);
-  background: rgba(255,255,255,0.035);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.025);
-}
-
-.halving-countdown-timer .countdown-box span {
-  display: block;
-  font-size: 42px;
-  line-height: 1;
-  font-weight: 800;
+.halving-subtext strong {
   color: #ffffff;
-  letter-spacing: -0.03em;
-  margin-bottom: 8px;
+  font-weight: 600;
 }
 
-.halving-countdown-timer .countdown-box small {
+/* TIMER */
+.halving-countdown-timer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  gap: 20px;
+}
+
+/* BOX */
+.countdown-box {
+  flex: 1;
+  text-align: center;
+  padding: 15px;
+
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.countdown-box span {
   display: block;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.68);
+  font-size: 28px;
+  font-weight: bold;
 }
 
-.halving-footnote {
-  margin-top: 14px !important;
-  font-size: 12px !important;
-  line-height: 1.4;
-  color: rgba(255,255,255,0.52) !important;
+.countdown-box small {
+  font-size: 12px;
+  opacity: 0.7;
 }
 
-@media (max-width: 900px) {
+/* MOBILE FIX */
+@media (max-width: 768px) {
   .halving-countdown-card {
     padding: 20px;
   }
 
-  .halving-countdown-card h2 {
-    font-size: 24px;
-  }
-
-  .halving-countdown-card p {
-    font-size: 13px;
-  }
-
   .halving-countdown-timer {
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
-    gap: 12px;
+    flex-direction: column;
   }
 
-  .halving-countdown-timer .countdown-box span {
-    font-size: 36px;
-  }
-}
-
-@media (max-width: 560px) {
-  .halving-countdown-card {
-    padding: 18px;
-    border-radius: 20px;
-  }
-
-  .halving-countdown-timer {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-
-  .halving-countdown-timer .countdown-box {
-    padding: 16px 10px;
-    border-radius: 16px;
-  }
-
-  .halving-countdown-timer .countdown-box span {
-    font-size: 32px;
-  }
-
-  .halving-countdown-timer .countdown-box small {
-    font-size: 10px;
-  }
-
-  .halving-countdown-card h2 {
-    font-size: 22px;
+  .countdown-box {
+    width: 100%;
   }
 }
   </style>
