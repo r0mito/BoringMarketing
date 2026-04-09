@@ -1027,6 +1027,81 @@
 .rollout-mini-value {
   font-size: 14px;
 }
+  /* ===== FIX MOBILE FOR ROLLOUT BLOCK ===== */
+
+@media (max-width: 860px) {
+  .rollout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rollout-main-box {
+    padding: 20px 16px;
+    min-width: 0;
+  }
+
+  .rollout-main-box .countdown {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .rollout-main-box .time-box {
+    min-height: 110px;
+    padding: 16px 10px;
+  }
+
+  .rollout-main-box .time-value {
+    font-size: clamp(30px, 9vw, 44px);
+    margin-bottom: 10px;
+  }
+
+  .rollout-main-box .time-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    white-space: nowrap;
+  }
+
+  .rollout-side-boxes {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .rollout-card {
+    padding: 20px;
+  }
+
+  .rollout-title,
+  .rollout-card .event-title {
+    font-size: 26px;
+  }
+
+  .rollout-main-box {
+    padding: 18px 14px;
+  }
+
+  .rollout-main-box .countdown {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .rollout-main-box .time-box {
+    min-height: 96px;
+    padding: 14px 8px;
+  }
+
+  .rollout-main-box .time-value {
+    font-size: clamp(28px, 10vw, 40px);
+  }
+
+  .rollout-main-box .time-label {
+    font-size: 10px;
+  }
+
+  .rollout-side-boxes {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 </head>
 <body>
