@@ -1294,7 +1294,7 @@
 
           <div class="inner-box mini-stat">
             <div class="mini-stat-label">Refresh</div>
-            <div class="mini-stat-value">Every 5 min</div>
+            <div class="mini-stat-value">Every 2 hours</div>
           </div>
 
           <div class="inner-box mini-stat">
@@ -1423,10 +1423,10 @@
       }
     }
 
-    function startXchSupplyPolling() {
-      fetchXchSupply();
-      setInterval(fetchXchSupply, 5 * 60 * 1000);
-    }
+   function startXchSupplyPolling() {
+  fetchXchSupply();
+  setInterval(fetchXchSupply, 120 * 60 * 1000);
+}
 
     function updateCountdowns() {
       const countdowns = document.querySelectorAll('[data-date]');
