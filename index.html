@@ -1435,9 +1435,7 @@
         payload.result?.usd,
         payload.result?.current_price,
 
-        // CoinGecko fallback formats
-        payload.chia?.usd,
-        payload.market_data?.current_price?.usd
+        payload.chia?.usd
       ];
 
       for (const item of possiblePaths) {
@@ -1453,7 +1451,7 @@
     return null;
   }
 
-  async function fetchText(url) {
+  async function fetchJson(url) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 10000);
 
@@ -1471,17 +1469,34 @@
         throw new Error('HTTP ' + response.status + ' for ' + url);
       }
 
-      return await response.text();
+      return await response.json();
     } finally {
       clearTimeout(timeout);
     }
   }
 
-  function tryParseJson(rawText) {
+  async function fetchCoinGeckoBackup() {
     try {
-      return JSON.parse(rawText);
-    } catch {
-      return rawText;
+      const data = await fetchJson('https://api.coingecko.com/api/v3/simple/price?ids=chia&vs_currencies=usd&include_market_cap=true');
+
+      const price = data?.chia?.usd;
+      const marketCap = data?.chia?.usd_market_cap;
+
+      let supply = null;
+      if (Number.isFinite(price) && Number.isFinite(marketCap) && price > 0) {
+        supply = marketCap / price;
+      }
+
+      return {
+        price: Number.isFinite(price) ? price : null,
+        supply: Number.isFinite(supply) ? supply : null
+      };
+    } catch (error) {
+      console.error('CoinGecko backup failed:', error);
+      return {
+        price: null,
+        supply: null
+      };
     }
   }
 
@@ -1490,19 +1505,25 @@
     if (!valueEl) return null;
 
     try {
-      const rawText = await fetchText('https://api.spacescan.io/stats/circulating-supply');
-      const parsed = tryParseJson(rawText);
+      const parsed = await fetchJson('https://api.spacescan.io/stats/circulating-supply');
       const supply = extractSupplyNumber(parsed);
 
       if (!Number.isFinite(supply)) {
-        console.error('Supply API raw payload:', parsed);
-        throw new Error('Unexpected supply API format');
+        throw new Error('Unexpected SpaceScan supply format');
       }
 
       valueEl.textContent = formatSupplyNumber(supply);
       return supply;
     } catch (error) {
-      console.error('Failed to fetch XCH circulating supply:', error);
+      console.error('SpaceScan supply failed, trying backup:', error);
+
+      const backup = await fetchCoinGeckoBackup();
+
+      if (Number.isFinite(backup.supply)) {
+        valueEl.textContent = formatSupplyNumber(backup.supply);
+        return backup.supply;
+      }
+
       valueEl.textContent = 'N/A';
       return null;
     }
@@ -1512,36 +1533,30 @@
     const priceEl = document.getElementById('xchPriceValue');
     if (!priceEl) return null;
 
-    const sources = [
-      {
-        name: 'SpaceScan',
-        url: 'https://api.spacescan.io/stats/price?currency=usd'
-      },
-      {
-        name: 'SpaceScan fallback',
-        url: 'https://api.spacescan.io/stats/price'
-      },
-      {
-        name: 'CoinGecko fallback',
-        url: 'https://api.coingecko.com/api/v3/simple/price?ids=chia&vs_currencies=usd'
-      }
+    const urls = [
+      'https://api.spacescan.io/stats/price?currency=usd',
+      'https://api.spacescan.io/stats/price'
     ];
 
-    for (const source of sources) {
+    for (const url of urls) {
       try {
-        const rawText = await fetchText(source.url);
-        const parsed = tryParseJson(rawText);
+        const parsed = await fetchJson(url);
         const price = extractPriceNumber(parsed);
 
         if (Number.isFinite(price)) {
           priceEl.textContent = '$' + formatPriceNumber(price);
           return price;
         }
-
-        console.error(source.name + ' raw payload:', parsed);
       } catch (error) {
-        console.error('Failed price source:', source.name, error);
+        console.error('Price source failed:', url, error);
       }
+    }
+
+    const backup = await fetchCoinGeckoBackup();
+
+    if (Number.isFinite(backup.price)) {
+      priceEl.textContent = '$' + formatPriceNumber(backup.price);
+      return backup.price;
     }
 
     priceEl.textContent = 'N/A';
@@ -1665,5 +1680,6 @@
   setInterval(updateCountdowns, 1000);
 </script>
 
+  
 </body>
 </html>
