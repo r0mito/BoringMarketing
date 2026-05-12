@@ -515,7 +515,8 @@
 
     .rollout-grid,
     .listing-grid,
-    .supply-grid {
+    .supply-grid,
+    .whitepaper-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.95fr);
       gap: 18px;
@@ -560,6 +561,185 @@
       line-height: 1.45;
       color: rgba(255,255,255,0.92);
       word-break: break-word;
+    }
+
+    .whitepaper-grid {
+      align-items: start;
+    }
+
+    .capital-chart {
+      padding: 18px;
+    }
+
+    .chart-title {
+      margin-bottom: 14px;
+      color: rgba(255,255,255,0.9);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .chart-row {
+      display: grid;
+      grid-template-columns: minmax(120px, 0.7fr) minmax(160px, 1fr) 72px;
+      gap: 10px 12px;
+      align-items: center;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .chart-track {
+      height: 12px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+    }
+
+    .chart-fill {
+      display: block;
+      width: calc(var(--size) * 1%);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--blue));
+    }
+
+    .chart-fill.gold {
+      background: linear-gradient(90deg, var(--gold), #f97316);
+    }
+
+    .chart-value {
+      color: rgba(255,255,255,0.9);
+      font-weight: 800;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .source-line {
+      margin-top: 16px;
+      color: var(--muted-2);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .instrument-note {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .instrument-pill {
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: #fde68a;
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.18);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .investor-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .investor-chip {
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: rgba(255,255,255,0.86);
+      background: rgba(255,255,255,0.045);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .ownership-summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .ownership-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--panel-soft);
+    }
+
+    .ownership-table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    .ownership-table th,
+    .ownership-table td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--border);
+      color: rgba(255,255,255,0.88);
+      font-size: 14px;
+      line-height: 1.35;
+      vertical-align: middle;
+    }
+
+    .ownership-table th {
+      color: #d5fff8;
+      background: rgba(45, 212, 191, 0.1);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .ownership-table td:nth-child(2),
+    .ownership-table td:nth-child(3),
+    .ownership-table th:nth-child(2),
+    .ownership-table th:nth-child(3) {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .ownership-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .ownership-group td {
+      color: #fef3c7;
+      background: rgba(251, 191, 36, 0.08);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .ownership-highlight td {
+      background: rgba(96, 165, 250, 0.07);
+    }
+
+    .ownership-total td {
+      color: #ccfbf1;
+      background: rgba(45, 212, 191, 0.08);
+      font-weight: 800;
+    }
+
+    .ownership-owner {
+      font-weight: 700;
     }
 
     .main-label {
@@ -883,7 +1063,9 @@
       .cards-grid,
       .rollout-grid,
       .listing-grid,
-      .supply-grid {
+      .supply-grid,
+      .whitepaper-grid,
+      .ownership-summary {
         grid-template-columns: 1fr;
       }
     }
@@ -934,6 +1116,19 @@
       .status,
       .timeline-chip {
         white-space: normal;
+      }
+
+      .chart-row {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px 12px;
+      }
+
+      .chart-track {
+        grid-column: 1 / -1;
+      }
+
+      .instrument-note {
+        grid-template-columns: 1fr;
       }
 
       h1 {
@@ -1874,6 +2069,237 @@
 
       <div class="note">
         Informational only. API availability and response format may change over time.
+      </div>
+    </section>
+
+    <section class="section card panel">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow eyebrow-gold">Business Whitepaper</div>
+          <h2 class="panel-title">CNI Investors & Funding</h2>
+          <p class="panel-subtitle">
+            Capitalization and ownership notes reported in CNI Business Whitepaper v2.0.
+          </p>
+        </div>
+        <div class="badge badge-gold">As of Feb 2, 2022</div>
+      </div>
+
+      <div class="whitepaper-grid">
+        <div class="inner-box inner-main">
+          <div class="main-label">Capital raised</div>
+          <div class="main-value">$77M</div>
+          <p class="main-text">
+            CNI reported approximately $77M raised across four financing rounds.
+            The last round was $61M, raised shortly before transaction launch in May 2021.
+          </p>
+          <div class="source-line">
+            Source: Chia-Business-Whitepaper-2022-02-02-v2.0, page 35, Capitalization section.
+          </div>
+        </div>
+
+        <div class="inner-side-grid">
+          <div class="inner-box mini-stat">
+            <div class="mini-stat-label">Last round</div>
+            <div class="mini-stat-value">$61M before May 2021 transaction launch</div>
+          </div>
+
+          <div class="inner-box mini-stat">
+            <div class="mini-stat-label">Convertible note</div>
+            <div class="mini-stat-value">$10M uncapped note from a strategic partner</div>
+          </div>
+
+          <div class="inner-box mini-stat">
+            <div class="mini-stat-label">Investor group</div>
+            <div class="mini-stat-value">Listed 5%+ stockholders: 23.4%</div>
+          </div>
+
+          <div class="inner-box mini-stat">
+            <div class="mini-stat-label">Largest listed investor</div>
+            <div class="mini-stat-value">Slow Ventures affiliates: 8.6%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inner-box capital-chart" style="margin-top: 18px;">
+        <div class="chart-title">Funding composition: equity vs. note</div>
+
+        <div class="chart-row">
+          <div>Equity rounds</div>
+          <div class="chart-track"><span class="chart-fill" style="--size: 100;"></span></div>
+          <div class="chart-value">$77M</div>
+        </div>
+
+        <div class="chart-row">
+          <div>Series D</div>
+          <div class="chart-track"><span class="chart-fill" style="--size: 79.2;"></span></div>
+          <div class="chart-value">$61M</div>
+        </div>
+
+        <div class="chart-row">
+          <div>Convertible note</div>
+          <div class="chart-track"><span class="chart-fill gold" style="--size: 13;"></span></div>
+          <div class="chart-value">$10M</div>
+        </div>
+
+        <div class="instrument-note">
+          <span>The $10M strategic partner note is shown separately because it was not part of the four equity financing rounds.</span>
+          <span class="instrument-pill">Note, not equity</span>
+        </div>
+      </div>
+
+      <div class="inner-box capital-chart" style="margin-top: 18px;">
+        <div class="chart-title">Named investors</div>
+        <div class="investor-cloud" aria-label="Investors named in the CNI Business Whitepaper">
+          <span class="investor-chip">Richmond Global Ventures</span>
+          <span class="investor-chip">a16z Crypto</span>
+          <span class="investor-chip">Slow Ventures</span>
+          <span class="investor-chip">Naval Ravikant</span>
+          <span class="investor-chip">Breyer Capital</span>
+          <span class="investor-chip">Collaborative Fund</span>
+          <span class="investor-chip">IDEO Colab</span>
+          <span class="investor-chip">True Ventures</span>
+          <span class="investor-chip">Galaxy Digital</span>
+          <span class="investor-chip">Cygni Capital</span>
+          <span class="investor-chip">Greylock Partners</span>
+          <span class="investor-chip">DCM</span>
+          <span class="investor-chip">Metastable</span>
+          <span class="investor-chip">StillMark Capital</span>
+          <span class="investor-chip">Kamal Ravikant</span>
+        </div>
+      </div>
+
+      <div class="note">
+        Historical company capitalization information from the February 2, 2022 whitepaper. It may not reflect later financing, ownership, or disclosure changes.
+      </div>
+    </section>
+
+    <section class="section card panel">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow eyebrow-blue">Beneficial Ownership</div>
+          <h2 class="panel-title">Chia Network Inc. Major Holders Before Offering</h2>
+          <p class="panel-subtitle">
+            Source: Amendment No. 2 to Draft Registration Statement on Form S-1, submitted August 12, 2024. CIK: 0001730166.
+          </p>
+        </div>
+        <div class="badge badge-blue">Before offering</div>
+      </div>
+
+      <div class="ownership-summary">
+        <div class="inner-box mini-stat">
+          <div class="mini-stat-label">Largest named holder</div>
+          <div class="mini-stat-value">Bram Cohen: 36.8%</div>
+        </div>
+
+        <div class="inner-box mini-stat">
+          <div class="mini-stat-label">Officers & directors</div>
+          <div class="mini-stat-value">10,014,868 shares, 49.6%</div>
+        </div>
+
+        <div class="inner-box mini-stat">
+          <div class="mini-stat-label">Largest 5%+ stockholder</div>
+          <div class="mini-stat-value">Slow Ventures affiliates: 8.6%</div>
+        </div>
+      </div>
+
+      <div class="table-swipe-hint">Swipe to view columns</div>
+      <div class="ownership-table-wrap">
+        <table class="ownership-table">
+          <thead>
+            <tr>
+              <th>Name of beneficial owner</th>
+              <th>Shares before offering</th>
+              <th>% before offering</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="ownership-group">
+              <td colspan="3">Named executive officers and directors</td>
+            </tr>
+            <tr class="ownership-highlight">
+              <td class="ownership-owner">Bram Cohen</td>
+              <td>6,937,814</td>
+              <td>36.8%</td>
+            </tr>
+            <tr>
+              <td class="ownership-owner">David Frazee</td>
+              <td>1,574,926</td>
+              <td>8.3%</td>
+            </tr>
+            <tr class="ownership-highlight">
+              <td class="ownership-owner">Gene Hoffman, Jr.</td>
+              <td>1,046,470</td>
+              <td>5.3%</td>
+            </tr>
+            <tr>
+              <td class="ownership-owner">Misha Grabol</td>
+              <td>245,833</td>
+              <td>1.3%</td>
+            </tr>
+            <tr class="ownership-highlight">
+              <td class="ownership-owner">Thomas C. Chow</td>
+              <td>147,118</td>
+              <td>*</td>
+            </tr>
+            <tr>
+              <td class="ownership-owner">Chuck Stoops</td>
+              <td>57,499</td>
+              <td>*</td>
+            </tr>
+            <tr class="ownership-highlight">
+              <td class="ownership-owner">Effie Datson</td>
+              <td>2,708</td>
+              <td>*</td>
+            </tr>
+            <tr>
+              <td class="ownership-owner">Noor Menai</td>
+              <td>2,500</td>
+              <td>*</td>
+            </tr>
+            <tr class="ownership-total">
+              <td class="ownership-owner">Subtotal listed &lt;1% officers/directors</td>
+              <td>209,825</td>
+              <td>~1.0%</td>
+            </tr>
+            <tr class="ownership-highlight">
+              <td class="ownership-owner">All executive officers and directors as a group</td>
+              <td>10,014,868</td>
+              <td>49.6%</td>
+            </tr>
+            <tr class="ownership-group">
+              <td colspan="3">Other 5% or greater stockholders</td>
+            </tr>
+            <tr>
+              <td class="ownership-owner">Entities affiliated with Slow Ventures</td>
+              <td>1,619,611</td>
+              <td>8.6%</td>
+            </tr>
+            <tr class="ownership-highlight">
+              <td class="ownership-owner">Entities affiliated with Richmond Global Ventures</td>
+              <td>1,574,926</td>
+              <td>8.3%</td>
+            </tr>
+            <tr>
+              <td class="ownership-owner">Entities affiliated with AngelList-Ravikant</td>
+              <td>1,218,851</td>
+              <td>6.5%</td>
+            </tr>
+            <tr class="ownership-total">
+              <td class="ownership-owner">Total listed 5%+ stockholders</td>
+              <td>4,413,388</td>
+              <td>23.4%</td>
+            </tr>
+            <tr class="ownership-total">
+              <td class="ownership-owner">Other non-listed stockholders</td>
+              <td>~5,450,000</td>
+              <td>~27.0%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        Asterisk indicates less than 1%. Other non-listed stockholders are estimated as the remainder after listed officers, directors, and 5%+ stockholders.
       </div>
     </section>
 
